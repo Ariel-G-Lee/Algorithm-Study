@@ -28,34 +28,60 @@ public class SWEA1486 {
 			}
 			
 			ans = Integer.MAX_VALUE;
-			for (int i = 0; i < N; i++) {
-				M = i+1;
-				select = new boolean[N];
-				find(0,0);
-			}
+
+//			for (int i = 0; i < N; i++) {
+//				M = i+1;
+//				select = new boolean[N];
+//				find(0,0);
+//			}
+			
+			select = new boolean[N];
+			find(0);
 			
 			System.out.println("#"+t+" "+(ans-B));
 		}
 	}
 	
-	static void find(int cnt, int start) {
-		if(cnt == M) {
-			int sum = 0;
-			for (int i = 0; i < N; i++) {
-				if(select[i]) sum+=h[i];
-			}
-			
-			// B랑 같거나 넘는 경우만 확인
-			if(sum >= B) {
-				ans = ans > sum ? sum : ans;
-			}
-			return;
+
+//	static void find(int cnt, int start) {
+//		if(cnt == M) {
+//			int sum = 0;
+//			for (int i = 0; i < N; i++) {
+//				if(select[i]) sum+=h[i];
+//			}
+//			
+//			// B랑 같거나 넘는 경우만 확인
+//			if(sum >= B) {
+//				ans = ans > sum ? sum : ans;
+//			}
+//			return;
+//		}
+//		
+//		for (int i = start; i < N; i++) {
+//			select[i] = true;
+//			find(cnt+1, i+1);
+//			select[i] = false;
+//		}
+//	}
+	
+	static void find(int cnt) {
+	if(cnt == N) {
+		int sum = 0;
+		for (int i = 0; i < N; i++) {
+			if(select[i]) sum+=h[i];
 		}
 		
-		for (int i = start; i < N; i++) {
-			select[i] = true;
-			find(cnt+1, i+1);
-			select[i] = false;
+		// B랑 같거나 넘는 경우만 확인
+		if(sum >= B) {
+			ans = ans > sum ? sum : ans;
 		}
+		return;
+	}
+	
+		select[cnt] = true;
+		find(cnt+1);
+		select[cnt] = false;
+		find(cnt+1);
 	}
 }
+	
