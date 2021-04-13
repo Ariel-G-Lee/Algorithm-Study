@@ -35,35 +35,35 @@ public class BOJ14891_톱니바퀴 {
 			// 1 시계방향 -1 반시계방향
 			dir = Integer.parseInt(st.nextToken());
 		
-			// 시작 
 			int tmpd = dir; // 방향
-			int tmps = list[num].get(2);
+			int tmps = list[num].get(2); // 비교할 시작 극
 			
 			chk[num] = dir;
 
-			// 기준 번호 톱니에서 뒤로 가면서
+			// 기준 번호 톱니에서 뒤로 가면서 체크
 			for (int j = num+1; j < 4; j++) {
 				if(tmps != list[j].get(6)) {
 					// 돌아야하는 방향 저장(반대방향)
 					chk[j] = -tmpd;
-					tmpd = -tmpd; // 현재 방향 저장
-					tmps = list[j].get(2); // 현자 극 저장
-				} else { // 다르지 않다면 회전하지 않음 break
+					tmpd = -tmpd; // 돌아야하는 방향 저장
+					tmps = list[j].get(2); // 현재 극 저장
+				} else { // 극이 같다면 회전하지 않음 break
 					break;
 				}
 				
 			}
 			
 			tmpd = dir; // 방향
-			tmps = list[num].get(6);
-			// 기준번호에서 앞쪽으로 가면서 체크!
+			tmps = list[num].get(6); // 비교할 시작 극
+			
+			// 기준 번호 톱니에서 앞쪽으로 가면서 체크
 			for (int j = num-1; j >= 0; j--) {
 				if(tmps != list[j].get(2)) {
 					// 돌아야하는 방향 저장(반대방향)
 					chk[j] = -tmpd;
-					tmpd = -tmpd; // 현재 방향 저장
-					tmps = list[j].get(6); // 현자 극 저장
-				} else { // 다르지 않다면 회전하지 않음 break
+					tmpd = -tmpd; // 돌아야하는 방향 저장
+					tmps = list[j].get(6); // 현재 극 저장
+				} else { // 극이 같다면 회전하지 않음 break
 					break;
 				}
 			}
